@@ -15,6 +15,7 @@ langs+=("en-US")
 get_srcinfo_for() {
     local platform=$1 lang=$2
 
+    local src_sha512
     local src_name=tor-browser-$platform-${version}_$lang
     local src_url=$src_url_base/$src_name.tar.xz
     local src_file=${src_url##*/}
@@ -23,8 +24,9 @@ get_srcinfo_for() {
 
     wget --continue -O "$src_file" -- "$src_url"
     wget --continue -O "$sig_file" -- "$sig_url"
+
     pgp_verifysig "$sig_file" "$src_file"
-    local src_sha512=$(sha512file "$src_file")
+    src_sha512=$(sha512file "$src_file")
 
     cat <<EOF
   tor-browser-$lang-$platform = {
