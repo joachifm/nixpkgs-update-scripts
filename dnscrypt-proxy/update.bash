@@ -1,18 +1,18 @@
 #! /usr/bin/env bash
 
-{
 sig_pubkey="RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3"
 
-test -f page.txt || {
-    wget --spider -r --no-parent https://download.dnscrypt.org/dnscrypt-proxy 2>page.txt
+{
+page=index.html
+test -f "$page" || {
+    curl -L -s --list-only -- https://download.dnscrypt.org/dnscrypt-proxy &>$page
 }
-src_url=$(grep -o 'https://download.dnscrypt.org/dnscrypt-proxy/dnscrypt-proxy-.*\.tar\.bz2$' page.txt | tail -n1)
-src_file=${src_url##*/}
-wget --continue -O "$src_file" -- "$src_url"
-
+src_file=$(grep -Eo 'dnscrypt-proxy-[[:digit:]]\.[[:digit:]]\.[[:digit:]]\.tar\.bz2' "$page" | sort -Vu | tail -n1)
+src_url=https://download.dnscrypt.org/dnscrypt-proxy/$src_file
 src_name=${src_file/.tar.bz2/}
 src_vers=(${src_name//-/ })
 version=${src_vers[2]}
+wget --continue -O "$src_file" -- "$src_url"
 
 sig_url=$src_url.minisig
 sig_file=${sig_url##*/}
