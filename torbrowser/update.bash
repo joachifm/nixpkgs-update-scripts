@@ -30,7 +30,7 @@ get_srcinfo_for() {
 
     cat <<EOF
   tor-browser-$lang-$platform = {
-    src = {
+    src = fetchurl {
       url = $src_url;
       sha512 = "$src_sha512";
     };
@@ -51,6 +51,7 @@ src_url_base=https://dist.torproject.org/torbrowser/$version
 pgp_recvkeys "${sig_fprint[@]}"
 } >&2
 
+echo '{ fetchurl }:'
 echo '{'
 for platform in "${platforms[@]}" ; do
     for lang in "${langs[@]}" ; do
