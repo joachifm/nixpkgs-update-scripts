@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-{ # run all code up to report in sublist, mainly to control output
+{
 
 #
 # grsecurit/PaX testing patch
@@ -9,10 +9,7 @@
 grsec_sigkey_fprint+=("DE94 52CE 46F4 2094 907F 108B 44D1 C0F8 2525 FE49")
 
 grsec_rss_url=https://grsecurity.net/testing_rss.php
-grsec_rss_file=grsec_rss.xml
-test -f "$grsec_rss_file" || {
-    wget -O "$grsec_rss_file" -- "$grsec_rss_url"
-}
+grsec_rss_file=$(fetchurl "$grsec_rss_url" grsec_rss.xml)
 
 patch_src_url=$(grep -Po -- '(?<=<guid>)https://grsecurity.net/test/.*\.patch(?=</guid>)' "$grsec_rss_file")
 patch_src_file=${patch_src_url##*/}
@@ -26,8 +23,8 @@ grrev=${patch_src_ver[3]}
 patch_sig_url=$patch_src_url.sig
 patch_sig_file=${patch_sig_url##*/}
 
-wget --continue -O "$patch_src_file" -- "$patch_src_url"
-wget --continue -O "$patch_sig_file" -- "$patch_sig_url"
+fetchurl "$patch_src_url" "$patch_src_file" >/dev/null
+fetchurl "$patch_sig_url" "$patch_sig_file" >/dev/null
 pgp_recvkeys "${grsec_sigkey_fprint[@]}"
 
 pgp_verifysig "$patch_sig_file" "$patch_src_file"
@@ -44,12 +41,10 @@ kver_zz=${kvers[2]}
 kver=${kver_xx}.${kver_yy}${kver_zz:+.${kver_zz}}
 
 kern_src_url="https://cdn.kernel.org/pub/linux/kernel/v${kver_xx}.x/linux-${kver}.tar.xz"
-kern_src_file=${kern_src_url##*/}
-wget --continue -O "$kern_src_file" -- "$kern_src_url"
+kern_src_file=$(fetchurl "$kern_src_url")
 
 kern_sig_url="${kern_src_url/.tar.xz/.tar.sign}"
-kern_sig_file=${kern_sig_url##*/}
-wget --continue -O "$kern_sig_file" -- "$kern_sig_url"
+kern_sig_file=$(fetchurl "$kern_sig_url")
 
 # See https://kernel.org/category/signatures.html
 kern_src_fprint+=("ABAF 11C6 5A29 70B1 30AB E3C4 79BE 3E43 0041 1886")
