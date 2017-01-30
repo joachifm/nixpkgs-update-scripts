@@ -31,9 +31,11 @@ src_sha512=$(sha512file "$src_file")
 } >&2
 
 cat <<EOF
+{ fetchurl }:
+
 {
   tor = {
-    src = {
+    src = fetchurl {
       url = $src_url;
       sha512 = "$src_sha512";
     };
