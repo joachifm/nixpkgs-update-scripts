@@ -62,9 +62,11 @@ kern_src_sha512=$(sha512file "$kern_src_file")
 #
 
 cat <<EOF
+{ fetchurl }:
+
 {
   grsecurity-testing-patch = {
-    src = {
+    src = fetchurl {
       url = $patch_src_url;
       sha512 = "$patch_src_sha512";
     };
@@ -77,7 +79,7 @@ cat <<EOF
   };
 
   linux-grsecurity = {
-    src = {
+    src = fetchurl {
       url = $kern_src_url;
       sha512 = "$kern_src_sha512";
     };
