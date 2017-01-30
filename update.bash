@@ -15,7 +15,8 @@ done
 
 # Generate a top-level src-info.nix
 exec 1>src-info.nix
+echo 'with (import <nixpkgs>{});'
 echo '{ }'
 for srcinfo in */src-info.nix ; do
-    echo "// (import ./${srcinfo})"
+    echo "// callPackage ./${srcinfo} {}"
 done
