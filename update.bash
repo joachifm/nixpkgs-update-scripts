@@ -1,13 +1,7 @@
 #! /usr/bin/env bash
 
-set -e -o pipefail
-shopt -s extglob nullglob
-
+. setup.bash
 . subr.bash
-
-HOME=$PWD
-export GNUPGHOME=$PWD/.gnupg
-gpg --batch --list-keys &>/dev/null
 
 for name in "${@}" ; do
     if [[ -x "$name"/update.bash ]] ; then
