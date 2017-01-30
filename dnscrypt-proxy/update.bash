@@ -1,13 +1,14 @@
 #! /usr/bin/env bash
 
 sig_pubkey="RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3"
+download_page_url=https://download.dnscrypt.org/dnscrypt-proxy
 
 {
-page=index.html
-curl ${CURLOPTS[*]} --list-only -o "$page" -- https://download.dnscrypt.org/dnscrypt-proxy
-
-src_file=$(grep -Eo 'dnscrypt-proxy-[[:digit:]]\.[[:digit:]]\.[[:digit:]]\.tar\.bz2' "$page" | sort -Vu | tail -n1)
-src_url=https://download.dnscrypt.org/dnscrypt-proxy/$src_file
+src_file=$(curl ${CURLOPTS[*]} --list-only -- "$download_page_url" \
+               | grep -Eo 'dnscrypt-proxy-[[:digit:]]\.[[:digit:]]\.[[:digit:]]\.tar\.bz2' \
+               | sort -Vu \
+               | tail -n1)
+src_url=$download_page_url/$src_file
 src_name=${src_file/.tar.bz2/}
 src_vers=(${src_name//-/ })
 version=${src_vers[2]}
