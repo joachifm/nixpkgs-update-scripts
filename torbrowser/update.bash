@@ -43,13 +43,14 @@ get_srcinfo_for() {
 EOF
 }
 
-{
-page=index.html
-curl ${CURLOPTS[*]} -o "$page" --list-only -- https://dist.torproject.org/torbrowser
-version=$(grep -Po '<a href\="\K([[:digit:]]+\.?)+/' $page | sed 's,/$,,' | sort -Vu | tail -n1)
+download_page_url=https://dist.torproject.org/torbrowser
+version=$(curl ${CURLOPTS[*]} --list-only -- "$download_page_url" \
+    | grep -Po '<a href\="\K([[:digit:]]+\.?)+/' \
+    | sed 's,/$,,' \
+    | sort -Vu \
+    | tail -n1)
 src_url_base=https://dist.torproject.org/torbrowser/$version
 pgp_recvkeys "${sig_fprint[@]}"
-} >&2
 
 echo '{ fetchurl }:'
 echo '{'
