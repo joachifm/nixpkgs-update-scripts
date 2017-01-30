@@ -7,13 +7,14 @@ sig_fprint+=(
     "2133 BC60 0AB1 33E1 D826 D173 FE43 009C 4607 B1FB"
 )
 
-{
-page=index.html
-curl ${CURLOPTS[*]} -o "$page" --list-only -- https://dist.torproject.org
+download_page_url=https://dist.torproject.org
 
-src_base=$(grep -Eo 'tor-([[:digit:]]+\.?)+\.tar\.gz' $page | sort -Vu | tail -n1)
+src_base=$(curl ${CURLOPTS[*]} --list-only -- "$download_page_url" \
+               | grep -Eo 'tor-([[:digit:]]+\.?)+\.tar\.gz' \
+               | sort -Vu \
+               | tail -n1)
 src_file=$src_base
-src_url=https://dist.torproject.org/$src_base
+src_url=$download_page_url/$src_base
 
 src_name=${src_base/.tar.gz/}
 src_vers=(${src_name//-/ })
@@ -28,7 +29,6 @@ fetchurl "$sig_url" "$sig_file" >/dev/null
 pgp_recvkeys "${sig_fprint[@]}"
 pgp_verifysig "$sig_file" "$src_file"
 src_sha512=$(sha512file "$src_file")
-} >&2
 
 cat <<EOF
 { fetchurl }:
