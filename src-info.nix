@@ -3,3 +3,4 @@
 // (import ./electrum/src-info.nix)
 // (import ./grsecurity/src-info.nix)
 // (import ./tor/src-info.nix)
+// (import ./torbrowser/src-info.nix)
