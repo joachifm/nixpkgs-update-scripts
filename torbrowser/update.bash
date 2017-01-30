@@ -22,8 +22,8 @@ get_srcinfo_for() {
     local sig_url=$src_url.asc
     local sig_file=${sig_url##*/}
 
-    wget --continue -O "$src_file" -- "$src_url"
-    wget --continue -O "$sig_file" -- "$sig_url"
+    fetchurl "$src_url" "$src_file" >/dev/null
+    fetchurl "$sig_url" "$sig_file" >/dev/null
 
     pgp_verifysig "$sig_file" "$src_file"
     src_sha512=$(sha512file "$src_file")
@@ -45,12 +45,9 @@ EOF
 
 {
 page=index.html
-test -f $page || {
-    curl -L -s https://dist.torproject.org/torbrowser --list-only &>$page
-}
+curl ${CURLOPTS[*]} -o "$page" --list-only -- https://dist.torproject.org/torbrowser
 version=$(grep -Po '<a href\="\K([[:digit:]]+\.?)+/' $page | sed 's,/$,,' | sort -Vu | tail -n1)
 src_url_base=https://dist.torproject.org/torbrowser/$version
-
 pgp_recvkeys "${sig_fprint[@]}"
 } >&2
 
