@@ -1,5 +1,7 @@
+with (import <nixpkgs>{});
 { }
-// (import ./dnscrypt-proxy/src-info.nix)
-// (import ./electrum/src-info.nix)
-// (import ./grsecurity/src-info.nix)
-// (import ./torbrowser/src-info.nix)
+// callPackage ./dnscrypt-proxy/src-info.nix {}
+// callPackage ./electrum/src-info.nix {}
+// callPackage ./grsecurity/src-info.nix {}
+// callPackage ./tor/src-info.nix {}
+// callPackage ./torbrowser/src-info.nix {}
