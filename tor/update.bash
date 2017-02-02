@@ -31,8 +31,6 @@ pgp_verifysig "$sig_file" "$src_file"
 src_sha512=$(sha512file "$src_file")
 
 cat <<EOF
-{ fetchurl }:
-
 {
   tor = {
     src = fetchurl {

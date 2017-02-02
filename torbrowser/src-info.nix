@@ -1,4 +1,3 @@
-{ fetchurl }:
 {
   tor-browser-en-US-linux32 = {
     src = fetchurl {

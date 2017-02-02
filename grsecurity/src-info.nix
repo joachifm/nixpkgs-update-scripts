@@ -1,5 +1,3 @@
-{ fetchurl }:
-
 {
   grsecurity-testing-patch = {
     src = fetchurl {

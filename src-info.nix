@@ -1,7 +1,7 @@
 with (import <nixpkgs>{});
 { }
-// callPackage ./dnscrypt-proxy/src-info.nix {}
-// callPackage ./electrum/src-info.nix {}
-// callPackage ./grsecurity/src-info.nix {}
-// callPackage ./tor/src-info.nix {}
-// callPackage ./torbrowser/src-info.nix {}
+// scopedImport { inherit fetchurl; } ./dnscrypt-proxy/src-info.nix
+// scopedImport { inherit fetchurl; } ./electrum/src-info.nix
+// scopedImport { inherit fetchurl; } ./grsecurity/src-info.nix
+// scopedImport { inherit fetchurl; } ./tor/src-info.nix
+// scopedImport { inherit fetchurl; } ./torbrowser/src-info.nix

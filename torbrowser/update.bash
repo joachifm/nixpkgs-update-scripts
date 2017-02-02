@@ -52,7 +52,6 @@ version=$(curl ${CURLOPTS[*]} --list-only -- "$download_page_url" \
 src_url_base=https://dist.torproject.org/torbrowser/$version
 pgp_recvkeys "${sig_fprint[@]}"
 
-echo '{ fetchurl }:'
 echo '{'
 for platform in "${platforms[@]}" ; do
     for lang in "${langs[@]}" ; do

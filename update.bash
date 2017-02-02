@@ -18,5 +18,5 @@ exec 1>src-info.nix
 echo 'with (import <nixpkgs>{});'
 echo '{ }'
 for srcinfo in */src-info.nix ; do
-    echo "// callPackage ./${srcinfo} {}"
+    echo "// scopedImport { inherit fetchurl; } ./${srcinfo}"
 done

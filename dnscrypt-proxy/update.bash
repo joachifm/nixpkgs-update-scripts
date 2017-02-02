@@ -23,8 +23,6 @@ src_sha512=$(sha512file "$src_file")
 } >&2
 
 cat <<EOF
-{ fetchurl }:
-
 {
   dnscrypt-proxy = {
     src = fetchurl {

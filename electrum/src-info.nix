@@ -1,5 +1,3 @@
-{ fetchurl }:
-
 {
   electrum = {
     src = fetchurl {
