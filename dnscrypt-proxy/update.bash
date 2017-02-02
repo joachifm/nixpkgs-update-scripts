@@ -26,8 +26,8 @@ cat <<EOF
 { fetchurl }:
 
 {
-  dnscrypt-proxy = fetchurl {
-    src = {
+  dnscrypt-proxy = {
+    src = fetchurl {
       url = $src_url;
       sha512 = "$src_sha512";
     };
