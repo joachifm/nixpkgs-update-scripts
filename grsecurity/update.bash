@@ -83,6 +83,7 @@ cat <<EOF
     };
     meta = {
       version = "$kver";
+      branch = "$kver_xx.$kver_yy";
     };
   };
 }
