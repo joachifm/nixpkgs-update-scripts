@@ -37,6 +37,15 @@ sha512file() {
     command nix-hash --flat --type sha512 --base32 "${1?File}"
 }
 
+sha512zip() {
+    local zipPath=${1?File}
+    unpacked=$(mktemp -d)
+    tar xf "$zipPath" -C "$unpacked" --strip-components=1
+    sha512=$(command nix-hash --type sha512 --base32 "$unpacked")
+    rm -rf "$unpacked"
+    echo "$sha512"
+}
+
 pgp_recvkeys() {
     command gpg --batch --keyserver hkp://keys.gnupg.net --recv-keys "${@}"
 }
