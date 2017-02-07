@@ -1,8 +1,8 @@
 {
   minisign = {
-    src = fetchurl {
+    src = fetchzip {
       url = https://github.com/jedisct1/minisign/archive/0.7.tar.gz;
-      sha512 = "36bg40kz7mbbv1hll34y4rjx7wjhhk2swy2hvwdc2jlvig1m1z33f5ffxqv0mwcq16m0inmam3x413p69z6c282qz5jq4rpkinsnfyj";
+      sha512 = "2ac0srz73aj86w0x92swf1w4i0db7cfgrnmmscyanjz9hdqmqpap19074bfva6f7rhbfhmjcg24wkr95n73wz8b2hj893xllq3sayb7";
     };
     meta = {
       version = "0.7";
