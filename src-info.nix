@@ -5,5 +5,6 @@ with (import <nixpkgs>{});
 // scopedImport pkgs ./gradm/src-info.nix
 // scopedImport pkgs ./grsecurity/src-info.nix
 // scopedImport pkgs ./minisign/src-info.nix
+// scopedImport pkgs ./pax-utils/src-info.nix
 // scopedImport pkgs ./tor/src-info.nix
 // scopedImport pkgs ./torbrowser/src-info.nix
