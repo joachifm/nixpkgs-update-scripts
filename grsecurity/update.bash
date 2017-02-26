@@ -9,9 +9,8 @@
 grsec_sigkey_fprint+=("DE94 52CE 46F4 2094 907F 108B 44D1 C0F8 2525 FE49")
 
 grsec_rss_url=https://grsecurity.net/testing_rss.php
-grsec_rss_file=$(fetchurl "$grsec_rss_url" grsec_rss.xml)
 
-patch_src_url=$(grep -Po -- '(?<=<guid>)https://grsecurity.net/test/.*\.patch(?=</guid>)' "$grsec_rss_file")
+patch_src_url=$(curl ${CURLOPTS[*]} -- "$grsec_rss_url" | grep -Po -- '(?<=<guid>)https://grsecurity.net/test/.*\.patch(?=</guid>)')
 patch_src_file=${patch_src_url##*/}
 patch_src_name=${patch_src_file/.patch/}
 patch_src_ver=(${patch_src_name//-/ })
