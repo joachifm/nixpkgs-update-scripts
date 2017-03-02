@@ -28,6 +28,7 @@ pgp_recvkeys "${grsec_sigkey_fprint[@]}"
 
 pgp_verifysig "$patch_sig_file" "$patch_src_file"
 patch_src_sha512=$(sha512file "$patch_src_file")
+patch_src_sha256=$(sha256file "$patch_src_file")
 
 #
 # Base kernel
@@ -53,6 +54,7 @@ pgp_recvkeys "${kern_src_fprint[@]}"
 
 xz -dc "$kern_src_file" | pgp_verifysig "$kern_sig_file" -
 kern_src_sha512=$(sha512file "$kern_src_file")
+kern_src_sha256=$(sha256file "$kern_src_file")
 
 } >&2
 
@@ -66,6 +68,7 @@ cat <<EOF
     src = fetchurl {
       url = $patch_src_url;
       sha512 = "$patch_src_sha512";
+      sha256 = "$patch_src_sha256";
     };
     meta = {
       grver = "$grver";
@@ -79,6 +82,7 @@ cat <<EOF
     src = fetchurl {
       url = $kern_src_url;
       sha512 = "$kern_src_sha512";
+      sha256 = "$kern_src_sha256";
     };
     meta = {
       version = "$kver";
