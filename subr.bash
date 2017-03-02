@@ -37,6 +37,10 @@ sha512file() {
     command nix-hash --flat --type sha512 --base32 "${1?File}"
 }
 
+sha256file() {
+    command nix-hash --flat --type sha256 --base32 "${1?File}"
+}
+
 sha512zip() {
     local zipPath=${1?File}
     unpacked=$(mktemp -d)
