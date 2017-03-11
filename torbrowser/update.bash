@@ -16,6 +16,7 @@ get_srcinfo_for() {
     local platform=$1 lang=$2
 
     local src_sha512
+    local src_sha256
     local src_name=tor-browser-$platform-${version}_$lang
     local src_url=$src_url_base/$src_name.tar.xz
     local src_file=${src_url##*/}
@@ -27,12 +28,14 @@ get_srcinfo_for() {
 
     pgp_verifysig "$sig_file" "$src_file"
     src_sha512=$(sha512file "$src_file")
+    src_sha256=$(sha256file "$src_file")
 
     cat <<EOF
   tor-browser-$lang-$platform = {
     src = fetchurl {
       url = $src_url;
       sha512 = "$src_sha512";
+      sha256 = "$src_sha256";
     };
     meta = {
       version = "$version";
