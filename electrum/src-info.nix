@@ -1,12 +1,12 @@
 {
   electrum = {
     src = fetchurl {
-      url = https://download.electrum.org/2.8.0/Electrum-2.8.0.tar.gz;
-      sha512 = "0f9xmnhwvnkcys89zl25kl12q94frnwjh607ifdxrmwxqrvm6dpcrw4g9j3k2cv1hmc6drpfma0pl6yqym2cyqaw1g09xkzcy28rvyw";
-      sha256 = "1vz9cdvfhqjavpfb89z01i9j74f2q699b2dzbv2381wj68bswhv3";
+      url = https://download.electrum.org/2.8.1/Electrum-2.8.1.tar.gz;
+      sha512 = "2fvv5vn99fxlwwracsq6z0jrf2iy59jc5kkmwlfiacxrb5khr4hs4kpvab7md5ckgmr9hb0hi6icg75dwrw78fwqmi5c2287xs8ppax";
+      sha256 = "1398s9d8j04is24il2xjb6xkj666pj21bsr90xglpsmfa1js9z7g";
     };
     meta = {
-      version = "2.8.0";
+      version = "2.8.1";
     };
   };
 }
