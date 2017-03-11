@@ -20,6 +20,7 @@ fetchurl "$sig_url" "$sig_file" >/dev/null
 pgp_recvkeys "${sig_fprint[@]}"
 pgp_verifysig "$sig_file" "$src_file"
 src_sha512=$(sha512file "$src_file")
+src_sha256=$(sha256file "$src_file")
 
 cat <<EOF
 {
@@ -27,6 +28,7 @@ cat <<EOF
     src = fetchurl {
       url = $src_url;
       sha512 = "$src_sha512";
+      sha256 = "$src_sha256";
     };
     meta = {
       version = "$version";
