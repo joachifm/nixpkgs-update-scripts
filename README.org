@@ -1,0 +1,2 @@
+A collection of quickly hacked-together scripts I use to update Nixpkgs.  Eventually
+integrate these into the main repo in some form.
