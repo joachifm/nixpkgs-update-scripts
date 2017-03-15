@@ -1,26 +1,26 @@
 {
   grsecurity-testing-patch = {
     src = fetchurl {
-      url = https://grsecurity.net/test/grsecurity-3.1-4.9.14-201703121245.patch;
-      sha512 = "1h9d1vvfwxn8flzhbii7xd808cmhw8az895sk3fam2vjy5ls1mxvrmvw0z9nzx5sq2hgjg9adyz52y5nj2rza09n3m2gn4i7lid81hh";
-      sha256 = "07v5r8hd67v4g6qfnvn7j78x9s08p590bkvm9lcvainip3v6vnm6";
+      url = https://grsecurity.net/test/grsecurity-3.1-4.9.15-201703150049.patch;
+      sha512 = "1x02ncl94835n85kpp5bfvy6863sb482fw30x2pqszi4aivjc31i77vj135a7f508ni1b9rbbl8a0m3q4nb8gdbia75zcxbjdi9ij9m";
+      sha256 = "0amwdv0brd1k1hcjr3av7zb1djk711mvlx1jm5rd5ffgw5llx5ng";
     };
     meta = {
       grver = "3.1";
-      grrev = "201703121245";
-      kver = "4.9.14";
-      version = "3.1-4.9.14-201703121245";
+      grrev = "201703150049";
+      kver = "4.9.15";
+      version = "3.1-4.9.15-201703150049";
     };
   };
 
   linux-grsecurity = {
     src = fetchurl {
-      url = https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.9.14.tar.xz;
-      sha512 = "0qc78s1j3mm03qs5m3dkc1ah9zchwdkmnkl1bl516dr9gy9i386all5c3f9bxniy8dd3lsk7bgfyqnigav1gyaki7vf9jh9ywqz58vd";
-      sha256 = "0h5nnf9h00fsd7q66rapvwmfxs4pi0vjljk92ir5vid59hzk8kak";
+      url = https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.9.15.tar.xz;
+      sha512 = "3p0cfjfmq4r04w6bjyi2aphq171yavv9m06b29wjsglb1bbkyiy4v278r99cq913msmdp3xs0ba1rkc36qp7cv7hxc29pj0w06ajwls";
+      sha256 = "14sfacaqkk9c66zrl8wkmy5331hczgz5j65yms6pnpwwi82sq3c2";
     };
     meta = {
-      version = "4.9.14";
+      version = "4.9.15";
       branch = "4.9";
     };
   };
