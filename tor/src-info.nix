@@ -1,12 +1,12 @@
 {
   tor = {
     src = fetchurl {
-      url = https://dist.torproject.org/tor-0.2.9.10.tar.gz;
-      sha512 = "3hvfksxr76j2xmp8a45hlnnywl8nxfpi9nvv8crxkm4d80l7ap9gf3i3m29jyjymgdfl2vp08znz2f2dc7dgw1na4b08vs032plz361";
-      sha256 = "0h8kpn42mgpkzmnga143hi8nh0ai65ypxh7qhkwbb15j3wz2h4fn";
+      url = https://dist.torproject.org/tor-0.3.0.6.tar.gz;
+      sha512 = "36835qhpn5r5kkfglgqihb4wy344n0xvn8pkkrcqk0y8dfk3p7nh4d07ra7bci3jwldpffgxq10afy9k6ddmcbcb3jk5z1j1a63z61k";
+      sha256 = "057vq8wagppmrlg85dgbsrk1v67yqpbi9n87s8gn0mdm7kli5rd3";
     };
     meta = {
-      version = "0.2.9.10";
+      version = "0.3.0.6";
     };
   };
 }
